@@ -1,8 +1,9 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import classes from './Cart.module.css';
 import Modal from '../UI/Modal';
 
-function Cart() {
+function Cart({ hideCardHandler }) {
   const cartItems = [
     {
       id: 'c1',
@@ -18,7 +19,7 @@ function Cart() {
     },
   ].map((item) => <li key={item.id}>{item.name}</li>);
   return (
-    <Modal>
+    <Modal hideCardHandler={hideCardHandler}>
       <ul className={classes['cart-items']}>
         {cartItems}
       </ul>
@@ -27,11 +28,15 @@ function Cart() {
         <span>25.88</span>
       </div>
       <div className={classes.actions}>
-        <button type="button" className={classes['button--alt']}>Close</button>
+        <button type="button" className={classes['button--alt']} onClick={hideCardHandler}>Close</button>
         <button type="button" className={classes.button}>Order</button>
       </div>
     </Modal>
   );
 }
+
+Cart.propTypes = {
+  hideCardHandler: PropTypes.func.isRequired,
+};
 
 export default Cart;
