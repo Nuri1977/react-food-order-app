@@ -4,7 +4,7 @@ import Meals from './components/Meals/Meals';
 
 function App() {
   return (
-    <div className="App">
+    <div>
       <Header />
       <Meals />
     </div>
