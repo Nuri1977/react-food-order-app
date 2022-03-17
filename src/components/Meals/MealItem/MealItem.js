@@ -1,10 +1,24 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
 import MealItemForm from './MealItemForm';
 import classes from './MealItem.module.css';
+import CartContext from '../../../context/cart-context';
 
-function MealItem({ name, description, price }) {
+function MealItem({
+  id, name, description, price,
+}) {
+  const cartCtx = useContext(CartContext);
+
   const priceConverted = `$${price.toFixed(2)}`;
+  const addAmountToCart = (amount) => {
+    cartCtx.addItem({
+      id,
+      name,
+      amount,
+      price,
+    });
+  };
+
   return (
     <li className={classes.meal}>
       <div>
@@ -13,13 +27,14 @@ function MealItem({ name, description, price }) {
         <div className={classes.price}>{priceConverted}</div>
       </div>
       <div>
-        <MealItemForm />
+        <MealItemForm addAmountToCart={addAmountToCart} />
       </div>
     </li>
   );
 }
 
 MealItem.propTypes = {
+  id: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
   description: PropTypes.string.isRequired,
   price: PropTypes.number.isRequired,
