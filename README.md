@@ -1,6 +1,6 @@
 # Food order Application
 
-This is project of Acedimind Udemy complete course on React.
+This is project build with React js and Firebase.
 
 ![screenshot](./src/assets/app-img.jpg)
 
